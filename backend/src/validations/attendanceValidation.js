@@ -3,7 +3,7 @@ import { ATTENDANCE_STATUSES } from '../utils/constants.js';
 
 export const markWeekValidation = [
   body('entries').isArray({ min: 1 }).withMessage('Entries are required'),
-  body('entries.*.date').isISO8601().withMessage('Date must be valid').toDate(),
+  body('entries.*.date').isISO8601().withMessage('Date must be valid'),
   body('entries.*.status').isIn(ATTENDANCE_STATUSES).withMessage('Status is invalid'),
   body('entries.*.remarks').optional({ values: 'falsy' }).trim(),
 ];

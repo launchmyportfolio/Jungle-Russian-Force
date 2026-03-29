@@ -78,8 +78,8 @@ const EmployeeDashboard = () => {
 
     try {
       const response = await fetchEmployeeWeekAttendance(user.id, {
-        startDate: weekStart.toISOString(),
-        endDate: endOfWeek(weekStart, { weekStartsOn: 1 }).toISOString(),
+        startDate: format(weekStart, 'yyyy-MM-dd'),
+        endDate: format(endOfWeek(weekStart, { weekStartsOn: 1 }), 'yyyy-MM-dd'),
       });
 
       const items = response?.data?.items || [];
@@ -127,7 +127,7 @@ const EmployeeDashboard = () => {
         .map((day) => ({ day, state: getDayState(day) }))
         .filter(({ state }) => state.editable)
         .map(({ day }) => ({
-          date: day.date,
+          date: day.dateKey,
           status: attendanceByDate?.[day.dateKey]?.status || 'Absent',
           remarks: attendanceByDate?.[day.dateKey]?.remarks || '',
         }));

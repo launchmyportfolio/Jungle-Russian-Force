@@ -93,8 +93,8 @@ const AdminDashboard = () => {
   const attendanceParams = useMemo(
     () => ({
       ...attendanceFilters,
-      startDate: weekStart.toISOString(),
-      endDate: endOfWeek(weekStart, { weekStartsOn: 1 }).toISOString(),
+      startDate: format(weekStart, 'yyyy-MM-dd'),
+      endDate: format(endOfWeek(weekStart, { weekStartsOn: 1 }), 'yyyy-MM-dd'),
     }),
     [attendanceFilters, weekStart]
   );
